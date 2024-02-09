@@ -1,20 +1,29 @@
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import { Imagem, Text, Titulo, Container } from './styles'
 
-import bannerImg from '../../assets/images/banner.png'
+//import { Restaurant } from '../../pages/Home'
+import { useGetBannerQuery } from '../../services/api'
 
-const Banner = () => (
-  <Imagem style={{ backgroundImage: `url(${bannerImg})` }}>
-    <div className="container">
-      <Container>
-        <div>
-          <Text>Italiana</Text>
-        </div>
-        <div>
-          <Titulo>La Dolce Vita Trattoria</Titulo>
-        </div>
-      </Container>
-    </div>
-  </Imagem>
-)
+const Banner = () => {
+  const { id } = useParams()
+  const { data: restaurant } = useGetBannerQuery(id!)
+
+  return (
+    <Imagem style={{ backgroundImage: `url(${restaurant?.capa})` }}>
+      <div className="container">
+        <Container>
+          <div>
+            <Text>{restaurant?.tipo}</Text>
+          </div>
+          <div>
+            <Titulo>{restaurant?.titulo}</Titulo>
+          </div>
+        </Container>
+      </div>
+    </Imagem>
+  )
+}
 
 export default Banner

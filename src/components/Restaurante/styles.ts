@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
-//import { TagContainer } from '../Tag/styles'
 
 export const Card = styled.div`
   position: relative;
@@ -49,6 +48,7 @@ export const Descricao = styled.p`
   font-size: 14px;
   line-height: 22px;
   margin: 16px 0;
+  min-height: 110px;
 `
 
 export const Infos = styled.div`
